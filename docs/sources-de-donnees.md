@@ -12,6 +12,15 @@
 - Les fabricants réservent leurs vues éclatées officielles à leurs réparateurs agréés (portails SAV).
 - Les distributeurs de pièces (Spareka, SOS Accessoire, et des grossistes B2B comme Astelav) les republient sur leurs sites, mais sans API publique connue *(à vérifier)*. Il faut donc négocier un flux catalogue (CSV/XML ou API) dans le cadre d'un partenariat.
 
+### Ce que publient les fabricants (vérifié le 8 octobre 2026)
+
+- **Makita** : vues éclatées publiques, un PDF par modèle sur [makita.fr/vues-eclatees.html](https://www.makita.fr/vues-eclatees.html), à l'adresse `https://www.icmsmakita.eu/CMS/custom/fi/attachments/part_drawings/FR/<MODELE>.pdf`. Le serveur des PDF interdit les robots (robots.txt) : l'application se contente d'y envoyer l'utilisateur, sans les télécharger.
+- **Bosch / Siemens (BSH)** : boutique de pièces avec recherche par E-Nr ou photo de plaque, schémas de l'appareil affichés en ligne, pas de PDF constaté.
+- **Whirlpool** : recherche par modèle sur [whirlpool-piecesdetachees.fr](https://www.whirlpool-piecesdetachees.fr/), vues éclatées non confirmées.
+- **Samsung** : liste des pièces disponibles par catégorie uniquement, pas de vue éclatée publique.
+
+L'application affiche ces liens sous la vue éclatée (`officialDocs` dans `js/app.js`). Avant d'afficher les schémas eux-mêmes dans l'application, vérifier les conditions d'utilisation de chaque fabricant.
+
 ## Vente des pièces
 
 - **Affiliation** : les grands sites marchands passent par des plateformes comme Awin, Effiliation ou Kwanko, ou par Amazon Partenaires. Les programmes de Spareka, SOS Accessoire et ManoMano restent à confirmer *(à vérifier)*.

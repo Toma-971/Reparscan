@@ -8,6 +8,26 @@ function shopUrl(shop, app, part){
   return "https://www.google.com/search?q="+encodeURIComponent(q+" site:"+shop);
 }
 
+// ---------- Vues éclatées officielles des fabricants ----------
+// Liens ouverts par le navigateur de l'utilisateur : l'application ne copie ni n'héberge les schémas.
+function officialDocs(app){
+  const m = app.model.split(" ").pop();
+  switch(app.brand){
+    case "Makita": return [
+      {label:"Vue éclatée Makita (PDF)", url:`https://www.icmsmakita.eu/CMS/custom/fi/attachments/part_drawings/FR/${encodeURIComponent(m)}.pdf`},
+      {label:"Toutes les vues éclatées Makita", url:"https://www.makita.fr/vues-eclatees.html"}];
+    case "Bosch": return [
+      {label:"Pièces Bosch (recherche par E-Nr)", url:"https://www.bosch-home.fr/france/bosch-pieces-detachees"}];
+    case "Whirlpool": return [
+      {label:"Pièces Whirlpool pour ce modèle", url:"https://www.whirlpool-piecesdetachees.fr/search.pl?query="+encodeURIComponent(app.model)}];
+    default: return [
+      {label:`Vue éclatée ${app.brand} ${app.model}`, url:"https://www.google.com/search?q="+encodeURIComponent(`vue éclatée ${app.brand} ${app.model}`)}];
+  }
+}
+function renderOfficial(){
+  $("official").innerHTML = "Schéma du fabricant : " + officialDocs(app).map(d=>`<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.label)}</a>`).join(" · ");
+}
+
 // ---------- État ----------
 let app = APPS[0], suspects = new Set(), selected = null, activeSym = null;
 const $ = id => document.getElementById(id);
@@ -25,7 +45,7 @@ function renderApp(){
   $("h-app").textContent = app.brand+" "+app.model;
   $("ident").innerHTML = Object.entries(app.codes).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
   $("symptoms").innerHTML = app.symptoms.map(s=>`<button type="button" class="chip" data-sym="${s.id}" aria-pressed="${activeSym===s.id}">${esc(s.label)}</button>`).join("");
-  renderDiag(); renderDraw(); renderParts();
+  renderDiag(); renderDraw(); renderParts(); renderOfficial();
 }
 
 function renderDiag(){

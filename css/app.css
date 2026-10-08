@@ -32,6 +32,7 @@ button:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visib
 .chip{font:500 .9rem var(--body);border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
 .chip[aria-pressed="true"]{background:var(--amber-soft);border-color:var(--amber);color:var(--ink)}
 .note{font-size:.88rem;color:var(--muted);margin:0}
+.note a{color:var(--blue)}
 .msg{font-size:.92rem;margin:0}
 .msg.err{color:var(--amber)}
 .ident{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:.92rem}
