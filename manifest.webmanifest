@@ -1,0 +1,12 @@
+{
+  "name": "Répar'Scan",
+  "short_name": "Répar'Scan",
+  "description": "Diagnostic de panne et pièces détachées pour l'électroménager et l'outillage.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f5f7",
+  "theme_color": "#2346b8",
+  "icons": [{ "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

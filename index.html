@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Répar'Scan</title>
+<meta name="description" content="Scanner un appareil, diagnostiquer la panne, voir la vue éclatée et acheter les pièces détachées.">
+<meta name="theme-color" content="#2346b8">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Répar<span>'</span>Scan</h1>
+    <span class="demo-flag">Prototype · catalogue de démonstration</span>
+  </header>
+
+  <section class="panel" aria-labelledby="h-id">
+    <div class="eyebrow">1 · Identifier l'appareil</div>
+    <h2 id="h-id">Scannez le code-barres ou tapez la référence</h2>
+    <form class="row" id="f-ref">
+      <input type="text" id="ref" placeholder="EAN, modèle ou code produit (E-Nr, PNC…)" autocomplete="off" aria-label="Référence de l'appareil">
+      <button type="submit">Rechercher</button>
+    </form>
+    <div class="row">
+      <label class="btn ghost" for="cam">Scanner un code-barres</label>
+      <input class="hidden-file" type="file" id="cam" accept="image/*" capture="environment">
+      <label class="btn ghost" for="plate" id="plate-lbl" hidden>Photo de la plaque signalétique</label>
+      <input class="hidden-file" type="file" id="plate" accept="image/*" capture="environment">
+    </div>
+    <p class="msg" id="id-msg" aria-live="polite"></p>
+    <div>
+      <div class="eyebrow" style="margin-bottom:6px">Essayer avec un appareil de démo</div>
+      <div class="row" id="demos"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="p-app" aria-labelledby="h-app">
+    <div class="split">
+      <div>
+        <div class="eyebrow" id="app-type"></div>
+        <h2 id="h-app"></h2>
+      </div>
+    </div>
+    <dl class="ident" id="ident"></dl>
+  </section>
+
+  <section class="panel" aria-labelledby="h-diag">
+    <div class="eyebrow">2 · Diagnostiquer la panne</div>
+    <h2 id="h-diag">Quel symptôme observez-vous ?</h2>
+    <div class="row" id="symptoms"></div>
+    <div class="diag" id="diag" hidden></div>
+    <div id="ai" hidden>
+      <label class="eyebrow" for="free">Ou décrivez la panne avec vos mots</label>
+      <textarea id="free" placeholder="Ex. : le tambour ne tourne plus mais j'entends le moteur, et ça sent le brûlé"></textarea>
+      <div class="row" style="margin-top:8px"><button type="button" id="ask">Analyser avec Claude</button><button type="button" class="ghost" id="stop" hidden>Arrêter</button></div>
+      <p class="msg" id="ai-msg" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="h-view">
+    <div class="eyebrow">3 · Vue éclatée</div>
+    <h2 id="h-view">Touchez une pièce pour la retrouver dans la liste</h2>
+    <div class="draw" id="draw"></div>
+    <div class="legend"><span><b style="background:var(--amber)"></b>Pièce suspectée</span><span><b style="background:var(--blue-soft);border:1px solid var(--blue)"></b>Pièce sélectionnée</span></div>
+    <p class="note" id="official"></p>
+  </section>
+
+  <section class="panel" aria-labelledby="h-parts">
+    <div class="eyebrow">4 · Pièces détachées</div>
+    <div class="split"><h2 id="h-parts">Nomenclature et revendeurs</h2><span class="note" id="parts-count"></span></div>
+    <ul class="parts" id="parts"></ul>
+    <p class="note">Prix indicatifs de démonstration. Les liens lancent une recherche de la pièce chez chaque revendeur ; en production ils deviendront des liens d'affiliation directs vers la fiche produit.</p>
+  </section>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@zxing/library@0.21.3/umd/index.min.js"></script>
+<script src="js/catalogue.js"></script>
+<script src="js/app.js"></script>
+<script>
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(() => {});
+</script>
+</body>
+</html>
