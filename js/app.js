@@ -14,7 +14,7 @@ function officialDocs(app){
   const m = app.model.split(" ").pop();
   switch(app.brand){
     case "Makita": return [
-      {label:"Vue éclatée Makita (PDF)", url:`https://www.icmsmakita.eu/CMS/custom/fi/attachments/part_drawings/FR/${encodeURIComponent(m)}.pdf`},
+      {label:"Vue éclatée Makita (PDF)", url:`https://www.icmsmakita.eu/cms/custom/fi/attachments/part_drawings/FR/${encodeURIComponent(m)}.pdf`},
       {label:"Toutes les vues éclatées Makita", url:"https://www.makita.fr/vues-eclatees.html"}];
     case "Bosch": return [
       {label:"Pièces Bosch (recherche par E-Nr)", url:"https://www.bosch-home.fr/france/bosch-pieces-detachees"}];
