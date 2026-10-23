@@ -9,6 +9,14 @@ Application web mobile (PWA) pour réparer soi-même son électroménager ou son
 
 > **Prototype.** Le catalogue (3 appareils) est fictif : codes EAN en préfixe `200`, références `DEMO-*`, prix inventés. Les liens revendeurs lancent une recherche ; ils deviendront des liens d'affiliation directs une fois un catalogue partenaire branché. Voir [docs/sources-de-donnees.md](docs/sources-de-donnees.md).
 
+## Installer sur le téléphone
+
+**Version web (Android et iPhone).** Une fois `main` publié, l'application est en ligne sur https://toma-971.github.io/reparscan/ (mise en ligne automatique par `.github/workflows/pages.yml`). À activer une seule fois : *Settings → Pages → Source : GitHub Actions*.
+- Android (Chrome) : menu ⋮ → *Installer l'application*.
+- iPhone (Safari) : bouton Partager → *Sur l'écran d'accueil*.
+
+**Application Android (APK).** `.github/workflows/android.yml` emballe la même application avec [Capacitor](https://capacitorjs.com/) et construit un APK à chaque push. Sur `main`, l'APK est publié dans la release `apk` du dépôt : le télécharger sur le téléphone, l'ouvrir et autoriser l'installation depuis cette source. Pour le construire soi-même : `npm ci && npm run android`, puis `./gradlew assembleDebug` dans `android/` (Java 17 et SDK Android requis).
+
 ## Lancer en local
 
 Aucune dépendance ni étape de build : c'est du HTML, CSS et JavaScript.
@@ -31,6 +39,8 @@ Sur téléphone, le bouton « Scanner un code-barres » ouvre l'appareil photo ;
 | `js/catalogue.js` | Données de démo : appareils, pièces, formes de la vue éclatée, symptômes |
 | `js/app.js` | Recherche, diagnostic, rendu SVG de la vue éclatée, liste des pièces, scan |
 | `sw.js`, `manifest.webmanifest` | Installation sur l'écran d'accueil et ouverture hors connexion |
+| `scripts/build-web.sh` | Copie l'application dans `www/` pour GitHub Pages et Capacitor |
+| `capacitor.config.json`, `package.json` | Emballage Android avec Capacitor |
 
 ## Ajouter un appareil au catalogue
 

@@ -1,6 +1,6 @@
 // Cache minimal pour que l'application s'ouvre hors connexion.
-const CACHE = "reparscan-v1";
-const ASSETS = ["./", "index.html", "css/app.css", "js/catalogue.js", "js/app.js", "manifest.webmanifest", "icons/icon.svg"];
+const CACHE = "reparscan-v2";
+const ASSETS = ["./", "index.html", "css/app.css", "js/catalogue.js", "js/app.js", "manifest.webmanifest", "icons/icon.svg", "icons/icon-192.png", "icons/icon-512.png"];
 
 self.addEventListener("install", e => e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS))));
 self.addEventListener("activate", e => e.waitUntil(
